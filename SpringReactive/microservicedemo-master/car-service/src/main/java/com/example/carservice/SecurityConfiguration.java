@@ -25,6 +25,7 @@ public class SecurityConfiguration {
             .oauth2ResourceServer()
             .jwt();
 
+        //return http.csrf().disable().build();//Testing only disabled it
         return http.build();
     }
 }
