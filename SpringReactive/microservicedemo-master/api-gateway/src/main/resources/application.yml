@@ -24,5 +24,3 @@ spring:
             user-name-attribute: sub
             jwk-set-uri: https://dev-51969336.okta.com/oauth2/default/v1/keys
             issuer-uri: https://dev-51969336.okta.com/oauth2/default
-
-

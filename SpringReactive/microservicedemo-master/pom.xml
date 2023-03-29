@@ -11,5 +11,6 @@
         <module>discovery-service</module>
         <module>car-service</module>
         <module>api-gateway</module>
+        <module>movie-service</module>
     </modules>
 </project>

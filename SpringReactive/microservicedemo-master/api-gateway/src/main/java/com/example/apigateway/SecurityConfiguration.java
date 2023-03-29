@@ -65,8 +65,8 @@ public class SecurityConfiguration {
             .oauth2ResourceServer()
             .jwt();
 
-        //return http.csrf().disable().build();//For My Testing disable CSRF
-        return http.build();
+        return http.csrf().disable().build();//For My Testing disable CSRF
+        //return http.build();
     }
 
     @Bean

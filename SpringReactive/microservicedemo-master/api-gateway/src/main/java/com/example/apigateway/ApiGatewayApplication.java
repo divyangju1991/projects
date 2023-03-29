@@ -9,6 +9,7 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.security.oauth2.gateway.TokenRelayGatewayFilterFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ClientCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
@@ -33,10 +34,15 @@ public class ApiGatewayApplication {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder, TokenRelayGatewayFilterFactory filterFactory) {
         return builder.routes()
-            .route("car-service", r -> r.path("/cars", "/car/*")
+            .route("car-service", r -> r.path("/cars", "/car/*", "/v1/movieInfos"
+                    , "/v1/reviews", "/v1/reviews/*")
                 .filters(f -> f.filter(filterFactory.apply())
                     .removeRequestHeader("cookie"))
                 .uri("lb://car-service/"))
+                .route("movie-service", r -> r.path("/v1/movies", "/v1/movies/*")
+                        .filters(f -> f.filter(filterFactory.apply())
+                                .removeRequestHeader("cookie"))
+                        .uri("lb://movie-service/"))
             .build();
     }
 }
